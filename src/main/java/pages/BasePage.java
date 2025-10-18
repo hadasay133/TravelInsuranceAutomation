@@ -34,8 +34,7 @@ public class BasePage {
     }
 
     public String getTextOfElement(By locator) {
-        WebElement webElement = waitForVisibility(locator);
-       return wait.until(ExpectedConditions.elementToBeClickable(webElement)).getText();
+        return waitForVisibility(locator).getText();
     }
 
 

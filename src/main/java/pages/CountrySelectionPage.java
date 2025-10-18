@@ -18,8 +18,9 @@ public class CountrySelectionPage extends BasePage{
         return By.xpath("//div[contains(text(), '"+country+"')]");
 
     }
-    public void clickOnDateSelectionBtn(){
+    public SelectionDatePage clickOnDateSelectionBtn(){
         clickOnElement(dateSelectionBtn);
+        return  new SelectionDatePage(driver);
 
     }
 }
