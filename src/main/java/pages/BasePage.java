@@ -13,13 +13,11 @@ public class BasePage {
 
     protected final WebDriver driver;
     protected final WebDriverWait wait;
-    protected final Actions actions;
 
 
     public BasePage(WebDriver driver) {
 
         this.driver = driver;
-        this.actions = new Actions(driver);
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(45));
     }
 
