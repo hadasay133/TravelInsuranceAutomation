@@ -6,12 +6,13 @@ import org.openqa.selenium.WebDriver;
 public class CountrySelectionPage extends BasePage{
 
     private final By dateSelectionBtn=  By.className("MuiButton-label");
+    private  final int DEFAULT_TIMEOUT=45;
     public CountrySelectionPage(WebDriver driver) {
         super(driver);
     }
 
     public void clickOnCountryBtn(String country){
-        clickOnElement(getCountryBtn(country));
+        clickOnElement(getCountryBtn(country),DEFAULT_TIMEOUT);
 
     }
     private By getCountryBtn(String country){
@@ -19,7 +20,7 @@ public class CountrySelectionPage extends BasePage{
 
     }
     public SelectionDatePage clickOnDateSelectionBtn(){
-        clickOnElement(dateSelectionBtn);
+        clickOnElement(dateSelectionBtn,DEFAULT_TIMEOUT);
         return  new SelectionDatePage(driver);
 
     }
