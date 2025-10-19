@@ -15,9 +15,6 @@ import java.time.LocalDate;
 
 public class FirstPurchaseTest {
     private WebDriver driver;
-    private HomePage homePage;
-    private final LocalDate startDate = LocalDate.now();
-    private final LocalDate endDate =startDate.plusDays(29);
     private final SoftAssert softAssert;
 
     public FirstPurchaseTest() {
@@ -28,15 +25,16 @@ public class FirstPurchaseTest {
     @BeforeTest
     public void setUp() {
         driver = new ChromeDriver();
-        homePage = new HomePage(driver);
-        driver.get("https://digital.harel-group.co.il/travel-policy");
-        driver.manage().window().maximize();
+
 
     }
 
     @Test
     public void firstPurchaseFlowTest() {
-        CountrySelectionPage countrySelectionPage=  homePage.clickOnBuyForFirstTimeBtn();
+        LocalDate startDate = LocalDate.now();
+        LocalDate endDate = startDate.plusDays(29);
+        HomePage homePage= HomePage.redirectToHomePage(driver);
+        CountrySelectionPage countrySelectionPage= homePage.clickOnBuyForFirstTimeBtn();
         countrySelectionPage.clickOnCountryBtn("קנדה");
         SelectionDatePage selectionDatePage = countrySelectionPage.clickOnDateSelectionBtn();
         selectionDatePage.chooseVacationDate(startDate,endDate);

@@ -13,4 +13,12 @@ public class HomePage extends BasePage {
         clickOnElement(buyForFirstTimeBtn);
                 return new CountrySelectionPage(driver);
     }
+
+    public static HomePage redirectToHomePage(WebDriver driver){
+        driver.get("https://digital.harel-group.co.il/travel-policy");
+        driver.manage().window().maximize();
+        return new HomePage(driver);
+
+
+    }
 }

@@ -11,27 +11,28 @@ import java.time.Duration;
 public class BasePage {
 
     protected final WebDriver driver;
-    protected final WebDriverWait wait;
+    private final int DEFAULT_WAIT_SECONDS = 45;
 
 
     public BasePage(WebDriver driver) {
 
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(45));
     }
 
-
-    private WebElement waitForVisibility(By locator) {
+    private WebElement waitForVisibility(By locator, int seconds) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+
     public void clickOnElement(By locator) {
-        WebElement webElement = waitForVisibility(locator);
+        WebElement webElement = waitForVisibility(locator,DEFAULT_WAIT_SECONDS);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(DEFAULT_WAIT_SECONDS));
         wait.until(ExpectedConditions.elementToBeClickable(webElement)).click();
     }
 
     public String getTextOfElement(By locator) {
-        return waitForVisibility(locator).getText();
+        return waitForVisibility(locator,DEFAULT_WAIT_SECONDS).getText();
     }
 
 
