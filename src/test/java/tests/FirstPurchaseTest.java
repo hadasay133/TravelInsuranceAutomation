@@ -15,8 +15,10 @@ import java.time.LocalDate;
 public class FirstPurchaseTest {
     private WebDriver driver;
     private final SoftAssert softAssert;
+    private HomePage homePage;
 
     public FirstPurchaseTest() {
+
         softAssert = new SoftAssert();
 
     }
@@ -24,16 +26,13 @@ public class FirstPurchaseTest {
     @BeforeTest
     public void setUp() {
         driver = new ChromeDriver();
-        HomePage homePage= HomePage.goToToHomePage(driver);
-
-
+        homePage= HomePage.goToToHomePage(driver);
     }
 
     @Test
     public void firstPurchaseFlowTest() {
         LocalDate startDate = LocalDate.now();
         LocalDate endDate = startDate.plusDays(29);
-
         CountrySelectionPage countrySelectionPage= homePage.clickOnBuyForFirstTimeBtn();
         countrySelectionPage.clickOnCountryBtn("קנדה");
         SelectionDatePage selectionDatePage = countrySelectionPage.clickOnDateSelectionBtn();
